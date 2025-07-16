@@ -2,10 +2,64 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>방명록</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .entry {
+      background: white;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .entry strong {
+      color: #007bff;
+    }
+    .date {
+      color: #666;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-  <h1>방명록 작성</h1>
+  <h1>📝 방명록 작성</h1>
   <form method="POST">
     <input name="name" placeholder="이름" required>
     <input name="message" placeholder="메시지" required>
@@ -13,10 +67,11 @@
   </form>
 
   <h2>📋 방명록 목록</h2>
-  <ul>
-    {% for name, message in entries %}
-      <li><strong>{{ name }}</strong>: {{ message }}</li>
-    {% endfor %}
-  </ul>
+  {% for name, message, created_at in entries %}
+    <div class="entry">
+      <strong>{{ name }}</strong>: {{ message }}
+      <div class="date">작성일: {{ created_at }}</div>
+    </div>
+  {% endfor %}
 </body>
 </html>
