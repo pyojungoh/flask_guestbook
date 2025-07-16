@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>방명록</title>
+</head>
+<body>
+  <h1>방명록 작성</h1>
+  <form method="POST">
+    <input name="name" placeholder="이름" required>
+    <input name="message" placeholder="메시지" required>
+    <button type="submit">등록</button>
+  </form>
+
+  <h2>📋 방명록 목록</h2>
+  <ul>
+    {% for name, message in entries %}
+      <li><strong>{{ name }}</strong>: {{ message }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
